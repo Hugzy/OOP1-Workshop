@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  *
  * @author Danieln Johansen
  */
-interface IFrontend {
+public interface IFrontend {
 
     public ObservableList<Building> getList();
     public void addBuilding(Building building);

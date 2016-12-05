@@ -5,10 +5,23 @@
  */
 package oop1.workshop.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+import oop1.workshop.Backend;
+import oop1.workshop.IFrontend;
+
 /**
+ * FXML Controller class
  *
- * @author frede
+ * @author JV
  */
-public class controller {
+public class controller implements Initializable {
+    
+    private IFrontend backend;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        backend = new Backend();
+    }    
     
 }
