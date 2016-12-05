@@ -14,7 +14,12 @@ import java.util.UUID;
  */
 public class TempSensor extends Sensor {
     
-    private UUID id = UUID.randomUUID();
+
+    private final UUID id;
+    public TempSensor(){
+        this.id=UUID.randomUUID();
+        createReading();
+    }
     
     @Override
     public Reading createReading() {
