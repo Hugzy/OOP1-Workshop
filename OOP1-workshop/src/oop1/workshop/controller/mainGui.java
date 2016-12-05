@@ -21,13 +21,21 @@ import javafx.stage.Stage;
  * @author frede
  */
 public class mainGui extends Application {
-    
+
+    private Scene scene;
+
     @Override
-    public void start(Stage primaryStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-		primaryStage.setTitle("Hello world!");
-		primaryStage.setScene(new Scene(root));
-		primaryStage.show();
+    public void start(Stage stage) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Frontend.fxml"));
+            Parent root = fxmlLoader.load();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -36,5 +44,5 @@ public class mainGui extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
