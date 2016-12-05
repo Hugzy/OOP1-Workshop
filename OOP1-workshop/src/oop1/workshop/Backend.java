@@ -6,7 +6,9 @@
 package oop1.workshop;
 
 import java.util.UUID;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 
 /**
  *
@@ -14,8 +16,12 @@ import javafx.collections.ObservableList;
  */
 public class Backend implements IFrontend {
 
+    private ObservableSet<Building> Set;
+    public Backend(){
+        this.Set = FXCollections.observableSet();
+    }
     @Override
-    public ObservableList<Building> getList() {
+    public ObservableSet<Building> getList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

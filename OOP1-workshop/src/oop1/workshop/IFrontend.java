@@ -7,6 +7,7 @@ package oop1.workshop;
 
 import java.util.UUID;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 
 /**
  *
@@ -14,7 +15,7 @@ import javafx.collections.ObservableList;
  */
 public interface IFrontend {
 
-    public ObservableList<Building> getList();
+    public ObservableSet<Building> getList();
     public void addBuilding(Building building);
     public void removeBuilding(UUID uuid);
   
