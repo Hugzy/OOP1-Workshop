@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="818.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="oop1.workshop.controller.controller">
+<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop1.workshop.controller.controller">
    <children>
       <TabPane prefHeight="472.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -30,7 +29,7 @@
                               <ListView fx:id="lvDisplaySensors" prefHeight="225.0" prefWidth="349.0" />
                            </children>
                         </VBox>
-                        <TitledPane layoutX="287.0" layoutY="14.0" prefHeight="99.0" prefWidth="109.0" text="Sensor type">
+                        <TitledPane expanded="false" layoutX="287.0" layoutY="14.0" prefHeight="99.0" prefWidth="109.0" text="Sensor type">
                            <content>
                               <AnchorPane prefHeight="73.0" prefWidth="67.0">
                                  <children>
