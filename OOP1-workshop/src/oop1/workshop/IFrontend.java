@@ -5,10 +5,17 @@
  */
 package oop1.workshop;
 
+import java.util.UUID;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Danieln Johansen
  */
-interface Frontend {
-	
+interface IFrontend {
+
+    public ObservableList<Building> getList();
+    public void addBuilding(Building building);
+    public void removeBuilding(UUID uuid);
+  
 }

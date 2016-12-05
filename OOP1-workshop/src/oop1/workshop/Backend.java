@@ -9,6 +9,6 @@ package oop1.workshop;
  *
  * @author Danieln Johansen
  */
-public class Backend implements Frontend {
+public class Backend implements IFrontend {
 	
 }
