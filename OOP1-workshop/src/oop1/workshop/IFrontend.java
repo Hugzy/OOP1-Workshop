@@ -17,6 +17,6 @@ public interface IFrontend {
 
     public ObservableSet<Building> getList();
     public void addBuilding(Building building);
-    public void removeBuilding(UUID uuid);
+    public void removeBuilding(Building building);
   
 }

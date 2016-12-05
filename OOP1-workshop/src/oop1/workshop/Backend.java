@@ -16,23 +16,23 @@ import javafx.collections.ObservableSet;
  */
 public class Backend implements IFrontend {
 
-    private ObservableSet<Building> Set;
+    private ObservableSet<Building> buildingSet;
     public Backend(){
-        this.Set = FXCollections.observableSet();
+        this.buildingSet = FXCollections.observableSet();
     }
     @Override
     public ObservableSet<Building> getList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return buildingSet;
     }
 
     @Override
     public void addBuilding(Building building) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        buildingSet.add(building);
     }
 
     @Override
-    public void removeBuilding(UUID uuid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeBuilding(Building building) {
+        buildingSet.remove(building);
     }
 	
 }
