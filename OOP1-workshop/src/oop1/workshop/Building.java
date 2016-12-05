@@ -3,17 +3,17 @@ package oop1.workshop;
 import java.util.ArrayList;
 
 public class Building {
-
     private ArrayList<Sensor> sensors;
-
     private DBReadings database;
-
     private String name;
-
     private String id;
-
     private Address address;
 
+	public Building(String name){
+		this.sensors = new ArrayList<>();
+		this.database = new DBReadings();
+		this.name = name;
+	}
 	/**
 	 * @return the sensors
 	 */
@@ -57,9 +57,13 @@ public class Building {
 	}
 
 	/**
+	 * @param zipCode
+	 * @param country
+	 * @param streetName
+	 * @param buildingNumber
 	 * @param address the address to set
 	 */
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddress(String zipCode, String country, String streetName, int buildingNumber) {
+		this.address = new Address(zipCode,country,streetName,buildingNumber);
 	}
 }
