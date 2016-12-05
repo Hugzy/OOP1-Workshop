@@ -1,15 +1,21 @@
 package oop1.workshop;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Reading {
+    
+    private UUID id = UUID.randomUUID();
 
     private double value;
 
     private Date time;
-
-    private ReadingType readingType;
-
+    
+    Reading(double value, Date time){
+        this.value=value;
+        this.time=time;
+    }
+    
 	/**
 	 * @return the value
 	 */
@@ -37,18 +43,8 @@ public class Reading {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-
-	/**
-	 * @return the readingType
-	 */
-	public ReadingType getReadingType() {
-		return readingType;
-	}
-
-	/**
-	 * @param readingType the readingType to set
-	 */
-	public void setReadingType(ReadingType readingType) {
-		this.readingType = readingType;
-	}
+    
+    public UUID getid(){
+        return id;
+    }
 }
