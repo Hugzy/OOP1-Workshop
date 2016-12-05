@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 public interface IFrontend {
 
     public ObservableList<Building> getBuildingList();
-    public void addBuilding(Building building);
+    public void addBuilding(String name, String zipCode, String country, String streetName, int buildingNumber);
     public void removeBuilding(UUID uuid);
     public Building getBuilding(UUID uuid);    
   

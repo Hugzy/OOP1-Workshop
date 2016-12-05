@@ -25,8 +25,10 @@ public class Backend implements IFrontend {
     }
 
     @Override
-    public void addBuilding(Building building) {
-        buildingSet.add(building);
+    public void addBuilding(String name, String zipCode, String country, String streetName, int buildingNumber) {
+        Address address;
+        address = new Address(zipCode, country, streetName, buildingNumber);
+        buildingSet.add(new Building(name, address));
     }
 
     @Override

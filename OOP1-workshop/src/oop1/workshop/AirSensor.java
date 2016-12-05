@@ -13,22 +13,15 @@ import java.util.UUID;
  * @author Danieln Johansen
  */
 public class AirSensor extends Sensor {
-
-    private final UUID id;
     
-    public AirSensor(){
-        this.id=UUID.randomUUID();
+    public AirSensor(String name){
+        super(name);
     }
     
     @Override
     public Reading createReading() {
         Reading r = new Reading(Math.random()*100000, new Date());
         return r;
-
-    }
-    
-    public UUID getId(){
-        return id;
     }
 	
 }

@@ -27,8 +27,8 @@ import oop1.workshop.Sensor;
  * @author JV
  */
 public class controller implements Initializable {
-    
-    private IFrontend backend;
+
+	private IFrontend backend;
 	@FXML
 	private ListView<Building> lvDisplayBuildings;
 	@FXML
@@ -63,12 +63,15 @@ public class controller implements Initializable {
 	private TextField tfAddNumber;
 	@FXML
 	private Button butAddBuilding;
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        backend = new Backend();
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+
+		backend = new Backend();
 		lvDisplayBuildings.setItems(backend.getBuildingList());
-        backend.addBuilding(new Building("test"));
-    }    
+		backend.addBuilding("test","12","t2","2",12);
+
+	}
 
 	@FXML
 	private void handleRemoveBuilding(ActionEvent event) {
@@ -77,7 +80,7 @@ public class controller implements Initializable {
 	@FXML
 	private void onlvDisplayBuildingsClick(MouseEvent event) {
 		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
-		if(b != null){
+		if (b != null) {
 			tfDisplayBuildingName.setText(b.getName());
 			tfDisplayAddress.setText(b.getAddress().toString());
 			tfDisplayUUID.setText(b.getBuildingID().toString());
@@ -92,5 +95,5 @@ public class controller implements Initializable {
 	@FXML
 	private void handleAddBuilding(ActionEvent event) {
 	}
-    
+
 }

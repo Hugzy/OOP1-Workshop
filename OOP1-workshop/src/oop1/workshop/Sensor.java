@@ -5,11 +5,33 @@
  */
 package oop1.workshop;
 
+import java.util.UUID;
+
 /**
  *
  * @author Danieln Johansen
  */
 public abstract class Sensor {
-	
-	public abstract Reading createReading();
+
+    private final UUID id;
+    private String name;
+
+    public Sensor(String name) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+    }
+
+    public abstract Reading createReading();
+
+    /**
+     * @return the id
+     */
+    public UUID getId() {
+        return id;
+    }
+    
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }
