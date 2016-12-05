@@ -9,6 +9,6 @@ package oop1.workshop;
  *
  * @author Danieln Johansen
  */
-class Address {
+public class Address {
 	
 }

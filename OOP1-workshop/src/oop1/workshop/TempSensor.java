@@ -9,7 +9,6 @@ package oop1.workshop;
  *
  * @author Danieln Johansen
  */
-public abstract class Sensor {
+public class TempSensor {
 	
-	public abstract Reading createReading();
 }
