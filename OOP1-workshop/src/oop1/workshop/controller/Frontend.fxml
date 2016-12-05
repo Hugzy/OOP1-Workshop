@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,16 +8,16 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="535.0" prefWidth="818.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="oop1.workshop.controller.controller">
+<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="818.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="oop1.workshop.controller.controller">
    <children>
-      <TabPane prefHeight="535.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="472.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Buildings">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="512.0" prefWidth="805.0">
                      <children>
-                        <ListView fx:id="lvDisplayBuildings" layoutX="14.0" layoutY="8.0" prefHeight="489.0" prefWidth="226.0" />
-                        <Button fx:id="butRemoveBuilding" layoutX="277.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleRemoveBuilding" prefHeight="67.0" prefWidth="132.0" text="Remove building" />
+                        <ListView fx:id="lvDisplayBuildings" layoutX="14.0" layoutY="8.0" onMouseClicked="#onlvDisplayBuildingsClick" prefHeight="411.0" prefWidth="226.0" />
+                        <Button fx:id="butRemoveBuilding" layoutX="277.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleRemoveBuilding" prefHeight="67.0" prefWidth="132.0" text="Remove building" />
                         <VBox layoutX="443.0" layoutY="14.0" prefHeight="404.0" prefWidth="349.0" spacing="8.0">
                            <children>
                               <Label text="Building Name" />
@@ -29,18 +30,57 @@
                               <ListView fx:id="lvDisplaySensors" prefHeight="225.0" prefWidth="349.0" />
                            </children>
                         </VBox>
+                        <TitledPane layoutX="287.0" layoutY="14.0" prefHeight="99.0" prefWidth="109.0" text="Sensor type">
+                           <content>
+                              <AnchorPane prefHeight="73.0" prefWidth="67.0">
+                                 <children>
+                                    <RadioButton fx:id="rbAirSensor" mnemonicParsing="false" text="Air Sensor">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="toggleSensors" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rbTempSensor" layoutY="24.0" mnemonicParsing="false" text="Temp Sensor" toggleGroup="$toggleSensors" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </TitledPane>
+                        <Button fx:id="butAddSensor" layoutX="277.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleAddSensor" prefHeight="67.0" prefWidth="132.0" text="Add Sensor" />
+                        <TextField fx:id="tfAddSensorName" layoutX="269.0" layoutY="145.0" />
+                        <Label layoutX="309.0" layoutY="128.0" text="Sensor name" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab text="Add Building">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="235.0" layoutY="14.0" prefHeight="298.0" prefWidth="349.0" spacing="8.0">
+                           <children>
+                              <Label text="Building Name" />
+                              <TextField fx:id="tfAddBuildingName" />
+                              <Label text="Country" />
+                              <TextField fx:id="tfAddCountry" />
+                              <Label text="Zip Code" />
+                              <TextField fx:id="tfAddZipCode" />
+                              <Label text="Street name" />
+                              <TextField fx:id="tfAddStreet" />
+                              <Label text="Building number" />
+                              <TextField fx:id="tfAddNumber" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="butAddBuilding" layoutX="314.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleAddBuilding" prefHeight="84.0" prefWidth="191.0" text="Add Building" />
+                     </children>
+                  </AnchorPane>
             </content>
           </Tab>
             <Tab text="Graphs">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Canvas height="270.0" layoutX="187.0" layoutY="87.0" width="445.0" />
+                     </children>
+                  </AnchorPane>
               </content>
             </Tab>
         </tabs>

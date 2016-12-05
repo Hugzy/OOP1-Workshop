@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import oop1.workshop.Backend;
 import oop1.workshop.Building;
 import oop1.workshop.IFrontend;
@@ -38,6 +41,28 @@ public class controller implements Initializable {
 	private TextField tfDisplayUUID;
 	@FXML
 	private ListView<Sensor> lvDisplaySensors;
+	@FXML
+	private RadioButton rbAirSensor;
+	@FXML
+	private ToggleGroup toggleSensors;
+	@FXML
+	private RadioButton rbTempSensor;
+	@FXML
+	private Button butAddSensor;
+	@FXML
+	private TextField tfAddSensorName;
+	@FXML
+	private TextField tfAddBuildingName;
+	@FXML
+	private TextField tfAddCountry;
+	@FXML
+	private TextField tfAddZipCode;
+	@FXML
+	private TextField tfAddStreet;
+	@FXML
+	private TextField tfAddNumber;
+	@FXML
+	private Button butAddBuilding;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         backend = new Backend();
@@ -47,6 +72,25 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleRemoveBuilding(ActionEvent event) {
+	}
+
+	@FXML
+	private void onlvDisplayBuildingsClick(MouseEvent event) {
+		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+		if(b != null){
+			tfDisplayBuildingName.setText(b.getName());
+			tfDisplayAddress.setText(b.getAddress().toString());
+			tfDisplayUUID.setText(b.getBuildingID().toString());
+			lvDisplaySensors.setItems(b.getSensors());
+		}
+	}
+
+	@FXML
+	private void handleAddSensor(ActionEvent event) {
+	}
+
+	@FXML
+	private void handleAddBuilding(ActionEvent event) {
 	}
     
 }
