@@ -24,29 +24,31 @@ import oop1.workshop.Sensor;
  * @author JV
  */
 public class controller implements Initializable {
-    
+
     private IFrontend backend;
-	@FXML
-	private ListView<Building> lvDisplayBuildings;
-	@FXML
-	private Button butRemoveBuilding;
-	@FXML
-	private TextField tfDisplayBuildingName;
-	@FXML
-	private TextField tfDisplayAddress;
-	@FXML
-	private TextField tfDisplayUUID;
-	@FXML
-	private ListView<Sensor> lvDisplaySensors;
+    @FXML
+    private ListView<Building> lvDisplayBuildings;
+    @FXML
+    private Button butRemoveBuilding;
+    @FXML
+    private TextField tfDisplayBuildingName;
+    @FXML
+    private TextField tfDisplayAddress;
+    @FXML
+    private TextField tfDisplayUUID;
+    @FXML
+    private ListView<Sensor> lvDisplaySensors;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        backend = new Backend();
-		lvDisplayBuildings.setItems(backend.getBuildingList());
-        backend.addBuilding(new Building("test"));
-    }    
 
-	@FXML
-	private void handleRemoveBuilding(ActionEvent event) {
-	}
-    
+        backend = new Backend();
+        lvDisplayBuildings.setItems(backend.getBuildingList());
+
+    }
+
+    @FXML
+    private void handleRemoveBuilding(ActionEvent event) {
+    }
+
 }

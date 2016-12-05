@@ -2,26 +2,28 @@ package oop1.workshop;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Building implements Comparable<Building> {
-    private final ArrayList<Sensor> sensors;
+    private final ObservableList<Sensor> sensorList;
     private final DBReadings database;
     private String name;
     private Address address;
 	private final UUID buildingID;
 
-	public Building(String name){
-		this.sensors = new ArrayList<>();
+	public Building(String name, Address address){
+		this.sensorList = FXCollections.observableArrayList();
 		this.database = new DBReadings();
 		this.name = name;
 		this.buildingID = UUID.randomUUID();
-                this.address = new Address();
+                this.address = address;
 	}
 	/**
 	 * @return the sensors
 	 */
-	public ArrayList<Sensor> getSensors() {
-		return sensors;
+	public ObservableList<Sensor> getSensors() {
+		return sensorList;
 	}
 
 	/**
@@ -69,6 +71,22 @@ public class Building implements Comparable<Building> {
 	public UUID getBuildingID() {
 		return buildingID;
 	}
+        
+        public void addSensor(Sensor sensor){
+            sensorList.add(sensor);
+        }
+        
+        public void removeSensor(UUID sensorID) {
+            Sensor toRemove = null;
+        for (Sensor sensor : sensorList) {
+            if (sensor.getId().equals(sensorID)) {
+                toRemove = sensor;
+            }
+        }
+        if (toRemove != null) {
+            sensorList.remove(toRemove);
+        }
+        }
 
 	@Override
 	public int compareTo(Building o) {
