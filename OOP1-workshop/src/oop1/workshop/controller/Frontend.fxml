@@ -6,6 +6,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" fx:controller="oop1.workshop.controller.controller">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="535.0" prefWidth="818.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="oop1.workshop.controller.controller">
+   <children>
+      <TabPane prefHeight="535.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Buildings">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="512.0" prefWidth="805.0">
+                     <children>
+                        <ListView fx:id="lvDisplayBuildings" layoutX="14.0" layoutY="8.0" prefHeight="489.0" prefWidth="226.0" />
+                        <Button fx:id="butRemoveBuilding" layoutX="277.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleRemoveBuilding" prefHeight="67.0" prefWidth="132.0" text="Remove building" />
+                        <VBox layoutX="443.0" layoutY="14.0" prefHeight="404.0" prefWidth="349.0" spacing="8.0">
+                           <children>
+                              <Label text="Building Name" />
+                              <TextField fx:id="tfDisplayBuildingName" editable="false" />
+                              <Label text="Address" />
+                              <TextField fx:id="tfDisplayAddress" editable="false" />
+                              <Label text="UUID" />
+                              <TextField fx:id="tfDisplayUUID" editable="false" />
+                              <Label text="Sensors" />
+                              <ListView fx:id="lvDisplaySensors" prefHeight="225.0" prefWidth="349.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Add Building">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Graphs">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>
