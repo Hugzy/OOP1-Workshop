@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import oop1.workshop.Backend;
+import oop1.workshop.Building;
 import oop1.workshop.IFrontend;
 
 /**
@@ -22,6 +23,8 @@ public class controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         backend = new Backend();
+        
+        backend.addBuilding(new Building("test"));
     }    
     
 }

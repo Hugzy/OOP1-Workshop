@@ -15,8 +15,9 @@ import javafx.collections.ObservableSet;
  */
 public interface IFrontend {
 
-    public ObservableSet<Building> getList();
+    public ObservableSet<Building> getBuildingList();
     public void addBuilding(Building building);
-    public void removeBuilding(Building building);
+    public void removeBuilding(UUID uuid);
+    public Building getBuilding(UUID uuid);    
   
 }

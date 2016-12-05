@@ -21,7 +21,7 @@ public class Backend implements IFrontend {
         this.buildingSet = FXCollections.observableSet();
     }
     @Override
-    public ObservableSet<Building> getList() {
+    public ObservableSet<Building> getBuildingList() {
         return buildingSet;
     }
 
@@ -31,8 +31,20 @@ public class Backend implements IFrontend {
     }
 
     @Override
-    public void removeBuilding(Building building) {
-        buildingSet.remove(building);
+    public void removeBuilding(UUID uuid) {
+        Building toRemove = null;
+        for (Building building : buildingSet) {
+            if (building.getBuildingID().equals(uuid)) {
+                toRemove = building;
+            }
+        }
+        if (toRemove != null) {
+            buildingSet.remove(toRemove);
+        }
     }
-	
+
+    @Override
+    public Building getBuilding(UUID uuid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
