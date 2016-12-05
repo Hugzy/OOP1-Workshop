@@ -44,6 +44,7 @@ public class controller implements Initializable {
 
         backend = new Backend();
         lvDisplayBuildings.setItems(backend.getBuildingList());
+        
 
     }
 
