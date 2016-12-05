@@ -70,11 +70,17 @@ public class controller implements Initializable {
 		backend = new Backend();
 		lvDisplayBuildings.setItems(backend.getBuildingList());
 		backend.addBuilding("test","12","t2","2",12);
+		rbAirSensor.setUserData("air");
+		rbTempSensor.setUserData("temp");
 
 	}
 
 	@FXML
 	private void handleRemoveBuilding(ActionEvent event) {
+		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+		if(b!=null){
+			backend.removeBuilding(b.getBuildingID());
+		}
 	}
 
 	@FXML
@@ -90,6 +96,10 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleAddSensor(ActionEvent event) {
+		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+		if(b != null){
+			b.addSensor(tfAddSensorName.getText(),toggleSensors.getUserData().toString());
+		}
 	}
 
 	@FXML
