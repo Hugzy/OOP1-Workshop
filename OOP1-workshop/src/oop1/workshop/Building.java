@@ -73,4 +73,12 @@ public class Building implements Comparable<Building> {
 	public int compareTo(Building o) {
 		return this.buildingID.compareTo(o.getBuildingID());
 	}
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.name);
+		sb.append(" - ");
+		sb.append(this.address.getCountry());
+		return sb.toString();
+	}
 }
