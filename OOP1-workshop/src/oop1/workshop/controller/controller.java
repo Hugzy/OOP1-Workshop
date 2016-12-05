@@ -39,6 +39,7 @@ public class controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         backend = new Backend();
+		lvDisplayBuildings.setItems(backend.getList());
     }    
 
 	@FXML
