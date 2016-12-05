@@ -9,6 +9,6 @@ package oop1.workshop;
  *
  * @author Danieln Johansen
  */
-public enum ReadingType {
+public class Backend implements Frontend {
 	
 }
