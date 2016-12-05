@@ -11,10 +11,10 @@ package oop1.workshop;
  */
 public class Address {
 	
-	private final String zipCode;
-	private final String country;
-	private final String streetName;
-	private final int buildingNumber;
+	private  String zipCode;
+	private  String country;
+	private  String streetName;
+	private  int buildingNumber;
 	
 	public Address(String zipCode, String country, String streetName, int buildingNumber){
 		this.buildingNumber = buildingNumber;
@@ -22,6 +22,13 @@ public class Address {
 		this.streetName = streetName;
 		this.zipCode = zipCode;
 	}
+        
+        public Address(){
+            this.buildingNumber = 0;
+		this.country = "";
+		this.streetName = "";
+		this.zipCode = "";
+        }
 
 	/**
 	 * @return the zipCode

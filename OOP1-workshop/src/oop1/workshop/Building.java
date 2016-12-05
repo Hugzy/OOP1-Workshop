@@ -15,6 +15,7 @@ public class Building implements Comparable<Building> {
 		this.database = new DBReadings();
 		this.name = name;
 		this.buildingID = UUID.randomUUID();
+                this.address = new Address();
 	}
 	/**
 	 * @return the sensors
