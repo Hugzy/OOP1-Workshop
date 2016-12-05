@@ -1,18 +1,20 @@
 package oop1.workshop;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class Building {
-    private ArrayList<Sensor> sensors;
-    private DBReadings database;
+public class Building implements Comparable<Building> {
+    private final ArrayList<Sensor> sensors;
+    private final DBReadings database;
     private String name;
-    private String id;
     private Address address;
+	private final UUID buildingID;
 
 	public Building(String name){
 		this.sensors = new ArrayList<>();
 		this.database = new DBReadings();
 		this.name = name;
+		this.buildingID = UUID.randomUUID();
 	}
 	/**
 	 * @return the sensors
@@ -42,12 +44,6 @@ public class Building {
 		this.name = name;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
 
 	/**
 	 * @return the address
@@ -61,9 +57,20 @@ public class Building {
 	 * @param country
 	 * @param streetName
 	 * @param buildingNumber
-	 * @param address the address to set
 	 */
 	public void setAddress(String zipCode, String country, String streetName, int buildingNumber) {
 		this.address = new Address(zipCode,country,streetName,buildingNumber);
+	}
+
+	/**
+	 * @return the buildingID
+	 */
+	public UUID getBuildingID() {
+		return buildingID;
+	}
+
+	@Override
+	public int compareTo(Building o) {
+		return this.buildingID.compareTo(o.getBuildingID());
 	}
 }

@@ -13,7 +13,7 @@ public class Reading {
     
     Reading(double value, Date time){
         this.value=value;
-        this.time=time;
+        this.time= time;
     }
     
 	/**
