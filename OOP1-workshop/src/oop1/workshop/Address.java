@@ -51,5 +51,13 @@ public class Address {
 		return buildingNumber;
 	}
 	
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.country + ", ");
+        sb.append(this.zipCode + ", ");
+        sb.append(this.streetName +" "+ this.buildingNumber);
+        return sb.toString();
+    }
 	
 }
