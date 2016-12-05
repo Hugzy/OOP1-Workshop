@@ -8,7 +8,6 @@ package oop1.workshop;
 import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 
 /**
  *
@@ -16,12 +15,12 @@ import javafx.collections.ObservableSet;
  */
 public class Backend implements IFrontend {
 
-    private ObservableSet<Building> buildingSet;
+    private ObservableList<Building> buildingSet;
     public Backend(){
-        this.buildingSet = FXCollections.observableSet();
+        this.buildingSet = FXCollections.observableArrayList();
     }
     @Override
-    public ObservableSet<Building> getList() {
+    public ObservableList<Building> getBuildingList() {
         return buildingSet;
     }
 
@@ -31,8 +30,20 @@ public class Backend implements IFrontend {
     }
 
     @Override
-    public void removeBuilding(Building building) {
-        buildingSet.remove(building);
+    public void removeBuilding(UUID uuid) {
+        Building toRemove = null;
+        for (Building building : buildingSet) {
+            if (building.getBuildingID().equals(uuid)) {
+                toRemove = building;
+            }
+        }
+        if (toRemove != null) {
+            buildingSet.remove(toRemove);
+        }
     }
-	
+
+    @Override
+    public Building getBuilding(UUID uuid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

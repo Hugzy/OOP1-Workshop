@@ -14,7 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import oop1.workshop.Backend;
+import oop1.workshop.Building;
 import oop1.workshop.IFrontend;
+import oop1.workshop.Sensor;
 
 /**
  * FXML Controller class
@@ -25,7 +27,7 @@ public class controller implements Initializable {
     
     private IFrontend backend;
 	@FXML
-	private ListView<?> lvDisplayBuildings;
+	private ListView<Building> lvDisplayBuildings;
 	@FXML
 	private Button butRemoveBuilding;
 	@FXML
@@ -35,11 +37,12 @@ public class controller implements Initializable {
 	@FXML
 	private TextField tfDisplayUUID;
 	@FXML
-	private ListView<?> lvDisplaySensors;
+	private ListView<Sensor> lvDisplaySensors;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         backend = new Backend();
-		lvDisplayBuildings.setItems(backend.getList());
+		lvDisplayBuildings.setItems(backend.getBuildingList());
+        backend.addBuilding(new Building("test"));
     }    
 
 	@FXML
