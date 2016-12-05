@@ -5,10 +5,24 @@
  */
 package oop1.workshop;
 
+import java.util.Date;
+import java.util.UUID;
+
 /**
  *
  * @author Danieln Johansen
  */
-public class TempSensor {
+public class TempSensor extends Sensor {
+    
+    private UUID id = UUID.randomUUID();
+    
+    @Override
+    public Reading createReading() {
+        Reading r = new Reading(Math.random()*100000, new Date());
+        return r;
+    }
 	
+    public UUID getId(){
+        return id;
+    }
 }
