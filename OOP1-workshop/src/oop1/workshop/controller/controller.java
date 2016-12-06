@@ -98,12 +98,17 @@ public class controller implements Initializable {
 	private void handleAddSensor(ActionEvent event) {
 		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
 		if(b != null){
-			b.addSensor(tfAddSensorName.getText(),toggleSensors.getUserData().toString());
+			b.addSensor(tfAddSensorName.getText(),(String)toggleSensors.selectedToggleProperty().getValue().getUserData());
 		}
 	}
 
 	@FXML
 	private void handleAddBuilding(ActionEvent event) {
+		backend.addBuilding(tfAddBuildingName.getText(),
+				tfAddZipCode.getText(),
+				tfAddCountry.getText(),
+				tfAddStreet.getText(),
+				Integer.parseInt(tfAddNumber.getText()));
 	}
 
 }
