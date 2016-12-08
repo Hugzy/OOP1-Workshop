@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop1.workshop.controller.controller">
    <children>
       <TabPane prefHeight="472.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -64,7 +63,7 @@
                               <TextField fx:id="tfAddZipCode" />
                               <Label text="Street name" />
                               <TextField fx:id="tfAddStreet" />
-                              <Label text="Building number" />
+                              <Label fx:id="labelBuildingNumber" text="Building number" />
                               <TextField fx:id="tfAddNumber" />
                            </children>
                         </VBox>
