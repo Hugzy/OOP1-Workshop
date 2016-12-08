@@ -66,6 +66,7 @@
                               <TextField fx:id="tfAddStreet" />
                               <Label fx:id="labelBuildingNumber" text="Building number" />
                               <TextField fx:id="tfAddNumber" />
+                              <Label fx:id="labelBuildingAdded" prefHeight="45.0" prefWidth="348.0" text="Building added" />
                            </children>
                         </VBox>
                         <Button fx:id="butAddBuilding" layoutX="314.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleAddBuilding" prefHeight="84.0" prefWidth="191.0" text="Add Building" />

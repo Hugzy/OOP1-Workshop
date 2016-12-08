@@ -67,6 +67,8 @@ public class controller implements Initializable {
 	private Button butAddBuilding;
     @FXML
     private Label labelBuildingNumber;
+    @FXML
+    private Label labelBuildingAdded;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -76,6 +78,8 @@ public class controller implements Initializable {
 		backend.addBuilding("test","12","t2","2",12);
 		rbAirSensor.setUserData("air");
 		rbTempSensor.setUserData("temp");
+        labelBuildingAdded.setVisible(false);
+        
 
 	}
 
@@ -114,6 +118,8 @@ public class controller implements Initializable {
 				tfAddCountry.getText(),
 				tfAddStreet.getText(),
 				Integer.parseInt(tfAddNumber.getText()));
+        labelBuildingAdded.setVisible(true);
+        labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added" );
         }catch(NumberFormatException ex) {
             
             labelBuildingNumber.setText("Building Number - Please enter a valid building number");
