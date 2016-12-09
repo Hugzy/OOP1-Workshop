@@ -151,7 +151,9 @@ public class controller implements Initializable {
 	private void handleRemoveSensor(ActionEvent event) {
 		Building selectedBuilding = lvDisplayBuildings.getSelectionModel().getSelectedItem();
 		Sensor selectedSensor = lvDisplaySensors.getSelectionModel().getSelectedItem();
-		backend.getBuilding(selectedBuilding.getBuildingID()).removeSensor(selectedSensor.getId());			
+		if (selectedBuilding != null && selectedSensor != null) {
+			backend.getBuilding(selectedBuilding.getBuildingID()).removeSensor(selectedSensor.getId());
+		}
 	}
 
 	@FXML
