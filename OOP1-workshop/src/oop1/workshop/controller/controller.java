@@ -208,7 +208,9 @@ public class controller implements Initializable {
 
 	@FXML
 	private void onlvGraphChooseSensor(MouseEvent event) {
+		lcReadingChart.setAnimated(false);
 		series.getData().clear();
+		lcReadingChart.setAnimated(true);
 		Sensor s = lvGraphChooseSensor.getSelectionModel().getSelectedItem();
 		Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
 		if (s != null && b != null) {
