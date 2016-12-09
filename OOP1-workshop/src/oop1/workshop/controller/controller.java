@@ -192,7 +192,9 @@ public class controller implements Initializable {
 					series.getData().add(new XYChart.Data(r.getTime().toString(), r.getValue()));
 				}
 			}
+			if(!lcReadingChart.getData().contains(series)){
 			lcReadingChart.getData().add(series);
+			}
 		}
 
 	}
