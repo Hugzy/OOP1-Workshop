@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -69,6 +70,16 @@ public class controller implements Initializable {
     private Label labelBuildingNumber;
     @FXML
     private Label labelBuildingAdded;
+	@FXML
+	private Button butAddReading;
+	@FXML
+	private Button butRemoveSensor;
+	@FXML
+	private LineChart<?, ?> lcReadingChart;
+	@FXML
+	private ListView<?> lvGraphChooseBuilding;
+	@FXML
+	private ListView<?> lvGraphChooseSensor;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -131,6 +142,22 @@ public class controller implements Initializable {
             labelBuildingNumber.setTextFill(Paint.valueOf("ff0000"));
             tfAddNumber.clear();
         }
+	}
+
+	@FXML
+	private void handleAddReading(ActionEvent event) {
+	}
+
+	@FXML
+	private void handleRemoveSensor(ActionEvent event) {
+	}
+
+	@FXML
+	private void onlvGraphChooseBuilding(MouseEvent event) {
+	}
+
+	@FXML
+	private void onlvGraphChooseSensor(MouseEvent event) {
 	}
 
 }
