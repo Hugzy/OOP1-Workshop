@@ -168,7 +168,11 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleAddReading(ActionEvent event) {
-
+		Sensor s = lvDisplaySensors.getSelectionModel().getSelectedItem();
+		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+		if (s != null && b != null) {
+			backend.makeReading(b.getBuildingID(), s.getId());
+		}
 	}
 
     public void refreshBuildings() {

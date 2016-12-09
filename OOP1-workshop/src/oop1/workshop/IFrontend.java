@@ -22,5 +22,6 @@ public interface IFrontend {
     public Building getBuilding(UUID uuid);
 	public ArrayList<Reading> getReadings(UUID buildingId, UUID sensorId);
     public ObservableList<Sensor> getSensorList(UUID buildingID);
+	public void makeReading(UUID buildingID, UUID sensorID);
 
 }

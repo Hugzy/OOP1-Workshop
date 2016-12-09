@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 public class Building implements Comparable<Building> {
 
 	private ObservableList<Sensor> obserSensorList;
-        private final HashMap<UUID,Sensor> sensorList;
+	private final HashMap<UUID, Sensor> sensorList;
 	private final DBReadings database;
 	private String name;
 	private Address address;
@@ -26,7 +26,7 @@ public class Building implements Comparable<Building> {
 	/**
 	 * @return the sensors
 	 */
-	public HashMap<UUID,Sensor> getSensors() {
+	public HashMap<UUID, Sensor> getSensors() {
 		return sensorList;
 	}
 
@@ -89,7 +89,7 @@ public class Building implements Comparable<Building> {
 			}
 		}
 		if (sensor != null) {
-			getSensors().put(sensor.getId(),sensor);
+			getSensors().put(sensor.getId(), sensor);
 		}
 
 	}
@@ -98,10 +98,11 @@ public class Building implements Comparable<Building> {
 		Sensor toRemove = null;
 		getSensors().remove(sensorID);
 	}
-        
-        public Reading makeReading(UUID sensorID) {
-            return new Reading(getSensors().get(sensorID).getCurrentValue(), new Date(), sensorID);
-        }
+
+	public void makeReading(UUID sensorID) {
+		database.addReading(new Reading(getSensors().get(sensorID).getCurrentValue(), new Date(), sensorID));
+		System.out.println(getSensors().get(sensorID).getCurrentValue() + new Date().toString());
+	}
 
 	@Override
 	public int compareTo(Building o) {
@@ -117,7 +118,7 @@ public class Building implements Comparable<Building> {
 		return sb.toString();
 	}
 
-    public ObservableList<Sensor> getSensorList() {
-        return obserSensorList;
-    }
+	public ObservableList<Sensor> getSensorList() {
+		return obserSensorList;
+	}
 }

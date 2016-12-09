@@ -76,4 +76,13 @@ public class Backend implements IFrontend {
 		return returnList;
 		
 	}
+
+	@Override
+	public void makeReading(UUID buildingID, UUID sensorID) {
+		for(Building b : buildingSet){
+			if(b.getBuildingID().compareTo(buildingID) == 0){
+				b.makeReading(sensorID);
+			}
+		}
+	}
 }
