@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.canvas.*?>
@@ -18,7 +19,6 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="512.0" prefWidth="805.0">
                      <children>
                         <ListView fx:id="lvDisplayBuildings" layoutX="14.0" layoutY="8.0" onMouseClicked="#onlvDisplayBuildingsClick" prefHeight="411.0" prefWidth="226.0" />
-                        <Button fx:id="butRemoveBuilding" layoutX="277.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleRemoveBuilding" prefHeight="67.0" prefWidth="132.0" text="Remove building" />
                         <VBox layoutX="443.0" layoutY="14.0" prefHeight="404.0" prefWidth="349.0" spacing="8.0">
                            <children>
                               <Label text="Building Name" />
@@ -45,9 +45,16 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <Button fx:id="butAddSensor" layoutX="277.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleAddSensor" prefHeight="67.0" prefWidth="132.0" text="Add Sensor" />
                         <TextField fx:id="tfAddSensorName" layoutX="269.0" layoutY="145.0" />
                         <Label layoutX="309.0" layoutY="128.0" text="Sensor name" />
+                        <VBox layoutX="248.0" layoutY="214.0" prefHeight="205.0" prefWidth="181.0" spacing="8.0">
+                           <children>
+                              <Button fx:id="butAddSensor" lineSpacing="8.0" mnemonicParsing="false" onAction="#handleAddSensor" prefHeight="51.0" prefWidth="188.0" text="Add Sensor" />
+                              <Button fx:id="butAddReading" mnemonicParsing="false" onAction="#handleAddReading" prefHeight="55.0" prefWidth="192.0" text="Add Reading " />
+                              <Button fx:id="butRemoveSensor" mnemonicParsing="false" onAction="#handleRemoveSensor" prefHeight="47.0" prefWidth="181.0" text="Remove sensor" />
+                              <Button fx:id="butRemoveBuilding" mnemonicParsing="false" onAction="#handleRemoveBuilding" prefHeight="48.0" prefWidth="181.0" text="Remove building" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
             </content>
@@ -81,7 +88,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Canvas height="270.0" layoutX="187.0" layoutY="87.0" width="445.0" />
-                        <LineChart layoutX="132.0" layoutY="22.0">
+                        <LineChart fx:id="lcReadingChart" layoutX="333.0" layoutY="18.0" prefHeight="411.0" prefWidth="471.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -89,6 +96,14 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
+                        <VBox prefHeight="445.0" prefWidth="267.0">
+                           <children>
+                              <Label text="Choose building" />
+                              <ListView fx:id="lvGraphChooseBuilding" onMouseClicked="#onlvGraphChooseBuilding" prefHeight="200.0" prefWidth="200.0" />
+                              <Label text="Choose sensor" />
+                              <ListView fx:id="lvGraphChooseSensor" onMouseClicked="#onlvGraphChooseSensor" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
               </content>
