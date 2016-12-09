@@ -120,6 +120,11 @@ public class controller implements Initializable {
 				Integer.parseInt(tfAddNumber.getText()));
         labelBuildingAdded.setVisible(true);
         labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added" );
+        tfAddBuildingName.clear();
+        tfAddZipCode.clear();
+        tfAddCountry.clear();
+        tfAddStreet.clear();
+        tfAddNumber.clear();
         }catch(NumberFormatException ex) {
             
             labelBuildingNumber.setText("Building Number - Please enter a valid building number");
