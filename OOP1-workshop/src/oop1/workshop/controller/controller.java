@@ -66,10 +66,10 @@ public class controller implements Initializable {
 	private TextField tfAddNumber;
 	@FXML
 	private Button butAddBuilding;
-    @FXML
-    private Label labelBuildingNumber;
-    @FXML
-    private Label labelBuildingAdded;
+	@FXML
+	private Label labelBuildingNumber;
+	@FXML
+	private Label labelBuildingAdded;
 	@FXML
 	private Button butAddReading;
 	@FXML
@@ -77,27 +77,26 @@ public class controller implements Initializable {
 	@FXML
 	private LineChart<?, ?> lcReadingChart;
 	@FXML
-	private ListView<?> lvGraphChooseBuilding;
+	private ListView<Building> lvGraphChooseBuilding;
 	@FXML
-	private ListView<?> lvGraphChooseSensor;
+	private ListView<Sensor> lvGraphChooseSensor;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
 		backend = new Backend();
 		lvDisplayBuildings.setItems(backend.getBuildingList());
-		backend.addBuilding("test","12","t2","2",12);
+		backend.addBuilding("test", "12", "t2", "2", 12);
 		rbAirSensor.setUserData("air");
 		rbTempSensor.setUserData("temp");
-        labelBuildingAdded.setVisible(false);
-        
+		labelBuildingAdded.setVisible(false);
 
 	}
 
 	@FXML
 	private void handleRemoveBuilding(ActionEvent event) {
 		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
-		if(b!=null){
+		if (b != null) {
 			backend.removeBuilding(b.getBuildingID());
 		}
 	}
@@ -116,32 +115,32 @@ public class controller implements Initializable {
 	@FXML
 	private void handleAddSensor(ActionEvent event) {
 		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
-		if(b != null){
-			b.addSensor(tfAddSensorName.getText(),(String)toggleSensors.selectedToggleProperty().getValue().getUserData());
+		if (b != null) {
+			b.addSensor(tfAddSensorName.getText(), (String) toggleSensors.selectedToggleProperty().getValue().getUserData());
 		}
 	}
 
 	@FXML
 	private void handleAddBuilding(ActionEvent event) {
-        try{
-		backend.addBuilding(tfAddBuildingName.getText(),
-				tfAddZipCode.getText(),
-				tfAddCountry.getText(),
-				tfAddStreet.getText(),
-				Integer.parseInt(tfAddNumber.getText()));
-        labelBuildingAdded.setVisible(true);
-        labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added" );
-        tfAddBuildingName.clear();
-        tfAddZipCode.clear();
-        tfAddCountry.clear();
-        tfAddStreet.clear();
-        tfAddNumber.clear();
-        }catch(NumberFormatException ex) {
-            
-            labelBuildingNumber.setText("Building Number - Please enter a valid building number");
-            labelBuildingNumber.setTextFill(Paint.valueOf("ff0000"));
-            tfAddNumber.clear();
-        }
+		try {
+			backend.addBuilding(tfAddBuildingName.getText(),
+					tfAddZipCode.getText(),
+					tfAddCountry.getText(),
+					tfAddStreet.getText(),
+					Integer.parseInt(tfAddNumber.getText()));
+			labelBuildingAdded.setVisible(true);
+			labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added");
+			tfAddBuildingName.clear();
+			tfAddZipCode.clear();
+			tfAddCountry.clear();
+			tfAddStreet.clear();
+			tfAddNumber.clear();
+		} catch (NumberFormatException ex) {
+
+			labelBuildingNumber.setText("Building Number - Please enter a valid building number");
+			labelBuildingNumber.setTextFill(Paint.valueOf("ff0000"));
+			tfAddNumber.clear();
+		}
 	}
 
 	@FXML
@@ -150,6 +149,9 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleRemoveSensor(ActionEvent event) {
+		Building selectedBuilding = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+		Sensor selectedSensor = lvDisplaySensors.getSelectionModel().getSelectedItem();
+		backend.getBuilding(selectedBuilding.getBuildingID()).removeSensor(selectedSensor.getId());			
 	}
 
 	@FXML
