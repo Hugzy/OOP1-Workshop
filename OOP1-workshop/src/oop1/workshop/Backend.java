@@ -16,15 +16,14 @@ import javafx.collections.ObservableList;
  */
 public class Backend implements IFrontend {
     private HashMap<UUID,Building> buildingList;
-    private ObservableList<Building> buildingSet;
     public Backend(){
         this.buildingList = new HashMap<>();
-        this.buildingSet = FXCollections.observableArrayList();
+    
     }
     @Override
     public ObservableList<Building> getBuildingList() {
-        this.buildingSet = FXCollections.observableArrayList(buildingList.values());
-        return this.buildingSet;
+        return FXCollections.observableArrayList(buildingList.values());
+        
     }
 
     @Override
@@ -37,15 +36,9 @@ public class Backend implements IFrontend {
 
     @Override
     public void removeBuilding(UUID uuid) {
-        Building toRemove = null;
-        for (Building building : buildingSet) {
-            if (building.getBuildingID().equals(uuid)) {
-                toRemove = building;
-            }
-        }
-        if (toRemove != null) {
-            buildingSet.remove(toRemove);
-        }
+  
+        buildingList.remove(uuid);
+        
     }
 
     @Override

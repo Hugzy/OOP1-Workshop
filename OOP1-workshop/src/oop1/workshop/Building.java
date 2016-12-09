@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Building implements Comparable<Building> {
@@ -118,6 +119,6 @@ public class Building implements Comparable<Building> {
 	}
 
     public ObservableList<Sensor> getSensorList() {
-        return obserSensorList;
+        return FXCollections.observableArrayList(getSensors().values());
     }
 }
