@@ -20,7 +20,7 @@ public class AirSensor extends Sensor {
     
     @Override
     public Reading createReading() {
-        Reading r = new Reading(Math.random()*100000, new Date());
+        Reading r = new Reading(Math.random()*100000, new Date(), this);
         return r;
     }
 	

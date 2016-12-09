@@ -11,9 +11,12 @@ public class Reading {
 
     private Date time;
     
-    Reading(double value, Date time){
+    private Sensor originSensor;
+    
+    Reading(double value, Date time, Sensor s){
         this.value=value;
-        this.time= time;
+        this.time = time;
+        originSensor=s;
     }
     
 	/**
@@ -46,5 +49,19 @@ public class Reading {
     
     public UUID getid(){
         return id;
+    }
+
+    /**
+     * @return the originSensor
+     */
+    public Sensor getOriginSensor() {
+        return originSensor;
+    }
+
+    /**
+     * @param originSensor the originSensor to set
+     */
+    public void setOriginSensor(Sensor originSensor) {
+        this.originSensor = originSensor;
     }
 }

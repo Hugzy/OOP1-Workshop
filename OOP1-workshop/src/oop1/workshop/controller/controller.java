@@ -5,12 +5,14 @@
  */
 package oop1.workshop.controller;
 
+import javafx.scene.paint.Paint;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -63,6 +65,10 @@ public class controller implements Initializable {
 	private TextField tfAddNumber;
 	@FXML
 	private Button butAddBuilding;
+    @FXML
+    private Label labelBuildingNumber;
+    @FXML
+    private Label labelBuildingAdded;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -72,6 +78,8 @@ public class controller implements Initializable {
 		backend.addBuilding("test","12","t2","2",12);
 		rbAirSensor.setUserData("air");
 		rbTempSensor.setUserData("temp");
+        labelBuildingAdded.setVisible(false);
+        
 
 	}
 
@@ -104,11 +112,25 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleAddBuilding(ActionEvent event) {
+        try{
 		backend.addBuilding(tfAddBuildingName.getText(),
 				tfAddZipCode.getText(),
 				tfAddCountry.getText(),
 				tfAddStreet.getText(),
 				Integer.parseInt(tfAddNumber.getText()));
+        labelBuildingAdded.setVisible(true);
+        labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added" );
+        tfAddBuildingName.clear();
+        tfAddZipCode.clear();
+        tfAddCountry.clear();
+        tfAddStreet.clear();
+        tfAddNumber.clear();
+        }catch(NumberFormatException ex) {
+            
+            labelBuildingNumber.setText("Building Number - Please enter a valid building number");
+            labelBuildingNumber.setTextFill(Paint.valueOf("ff0000"));
+            tfAddNumber.clear();
+        }
 	}
 
 }

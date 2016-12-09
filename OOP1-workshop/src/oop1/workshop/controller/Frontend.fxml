@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -64,11 +66,12 @@
                               <TextField fx:id="tfAddZipCode" />
                               <Label text="Street name" />
                               <TextField fx:id="tfAddStreet" />
-                              <Label text="Building number" />
+                              <Label fx:id="labelBuildingNumber" text="Building number" />
                               <TextField fx:id="tfAddNumber" />
                            </children>
                         </VBox>
-                        <Button fx:id="butAddBuilding" layoutX="314.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleAddBuilding" prefHeight="84.0" prefWidth="191.0" text="Add Building" />
+                        <Button fx:id="butAddBuilding" layoutX="314.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleAddBuilding" prefHeight="84.0" prefWidth="191.0" text="Add Building" />
+                        <Label fx:id="labelBuildingAdded" layoutX="366.0" layoutY="300.0" prefHeight="45.0" prefWidth="86.0" text="Building added" />
                      </children>
                   </AnchorPane>
             </content>
@@ -78,6 +81,14 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Canvas height="270.0" layoutX="187.0" layoutY="87.0" width="445.0" />
+                        <LineChart layoutX="132.0" layoutY="22.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
                      </children>
                   </AnchorPane>
               </content>
