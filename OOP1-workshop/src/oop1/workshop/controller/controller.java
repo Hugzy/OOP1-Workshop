@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -107,6 +109,7 @@ public class controller implements Initializable {
 		labelBuildingAdded.setVisible(false);
 		lvGraphChooseBuilding.setItems(backend.getBuildingList());
 		labelBuildingAdded.setVisible(false);
+		lcReadingChart.getData().add(series);
 		refreshBuildings();
 
 	}
@@ -205,6 +208,7 @@ public class controller implements Initializable {
 
 	@FXML
 	private void onlvGraphChooseSensor(MouseEvent event) {
+		series.getData().clear();
 		Sensor s = lvGraphChooseSensor.getSelectionModel().getSelectedItem();
 		Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
 		if (s != null && b != null) {
@@ -214,10 +218,6 @@ public class controller implements Initializable {
 					series.getData().add(new XYChart.Data(r.getTime().toString(), r.getValue()));
 				}
 			}
-			if(!lcReadingChart.getData().contains(series)){
-			lcReadingChart.getData().add(series);
-			}
 		}
-
 	}
 }
