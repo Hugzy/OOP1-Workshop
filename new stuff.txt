@@ -1,0 +1,3 @@
+-Bygninger skal lave readings ikke sensor, Giv id'et på en sensor for at lave en  reading
+
+-For sjov prøv at gem building i et map istedet for en list

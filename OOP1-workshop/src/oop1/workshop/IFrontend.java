@@ -20,5 +20,4 @@ public interface IFrontend {
     public void removeBuilding(UUID uuid);
     public Building getBuilding(UUID uuid);
     public ObservableList<Sensor> getSensorList(UUID buildingID);
-  
 }
