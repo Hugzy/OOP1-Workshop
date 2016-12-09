@@ -6,7 +6,6 @@
 package oop1.workshop;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  *
@@ -17,11 +16,10 @@ public class AirSensor extends Sensor {
     public AirSensor(String name){
         super(name);
     }
-    
+
     @Override
-    public Reading createReading() {
-        Reading r = new Reading(Math.random()*100000, new Date(), this);
-        return r;
+    public double getCurrentValue() {
+        return Math.random() * 100000;
     }
 	
 }

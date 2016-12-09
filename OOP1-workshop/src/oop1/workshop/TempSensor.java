@@ -19,8 +19,7 @@ public class TempSensor extends Sensor {
     }
 
     @Override
-    public Reading createReading() {
-        Reading r = new Reading(Math.random() * 100000, new Date(), this);
-        return r;
+    public double getCurrentValue() {
+        return Math.random() * 100000;
     }
 }

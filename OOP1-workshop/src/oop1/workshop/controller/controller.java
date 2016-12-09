@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ import oop1.workshop.Sensor;
  * @author JV
  */
 public class controller implements Initializable {
+
 
 	private IFrontend backend;
 	XYChart.Series<String, Double> series;
@@ -105,6 +107,7 @@ public class controller implements Initializable {
 		labelBuildingAdded.setVisible(false);
 		lvGraphChooseBuilding.setItems(backend.getBuildingList());
 		labelBuildingAdded.setVisible(false);
+		refreshBuildings();
 
 	}
 
@@ -113,6 +116,7 @@ public class controller implements Initializable {
 		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
 		if (b != null) {
 			backend.removeBuilding(b.getBuildingID());
+			refreshBuildings();
 		}
 	}
 
@@ -123,7 +127,8 @@ public class controller implements Initializable {
 			tfDisplayBuildingName.setText(b.getName());
 			tfDisplayAddress.setText(b.getAddress().toString());
 			tfDisplayUUID.setText(b.getBuildingID().toString());
-			lvDisplaySensors.setItems(b.getSensors());
+			lvDisplaySensors.setItems(backend.getSensorList(b.getBuildingID()));
+			refreshSensor(b.getBuildingID());
 		}
 	}
 
@@ -132,7 +137,9 @@ public class controller implements Initializable {
 		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
 		if (b != null) {
 			b.addSensor(tfAddSensorName.getText(), (String) toggleSensors.selectedToggleProperty().getValue().getUserData());
+			refreshSensor(b.getBuildingID());
 		}
+		
 	}
 
 	@FXML
@@ -150,6 +157,7 @@ public class controller implements Initializable {
 			tfAddCountry.clear();
 			tfAddStreet.clear();
 			tfAddNumber.clear();
+			 refreshBuildings();
 		} catch (NumberFormatException ex) {
 
 			labelBuildingNumber.setText("Building Number - Please enter a valid building number");
@@ -163,12 +171,22 @@ public class controller implements Initializable {
 
 	}
 
+    public void refreshBuildings() {
+        lvDisplayBuildings.setItems(backend.getBuildingList());
+		lvGraphChooseBuilding.setItems(backend.getBuildingList());
+
+    }
+
+    public void refreshSensor(UUID buildingID) {
+        lvDisplaySensors.setItems(backend.getSensorList(buildingID));
+    }
 	@FXML
 	private void handleRemoveSensor(ActionEvent event) {
 		Building selectedBuilding = lvDisplayBuildings.getSelectionModel().getSelectedItem();
 		Sensor selectedSensor = lvDisplaySensors.getSelectionModel().getSelectedItem();
 		if (selectedBuilding != null && selectedSensor != null) {
 			backend.getBuilding(selectedBuilding.getBuildingID()).removeSensor(selectedSensor.getId());
+			refreshSensor(selectedBuilding.getBuildingID());
 		}
 	}
 
@@ -177,7 +195,7 @@ public class controller implements Initializable {
 
 		Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
 		if (b != null) {
-			lvGraphChooseSensor.setItems(b.getSensors());
+			lvGraphChooseSensor.setItems(backend.getSensorList(b.getBuildingID()));
 		}
 	}
 
@@ -198,5 +216,4 @@ public class controller implements Initializable {
 		}
 
 	}
-
 }

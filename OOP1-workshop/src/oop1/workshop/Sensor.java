@@ -21,7 +21,7 @@ public abstract class Sensor {
         this.name = name;
     }
 
-    public abstract Reading createReading();
+    public abstract double getCurrentValue();
 
     /**
      * @return the id
