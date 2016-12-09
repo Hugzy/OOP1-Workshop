@@ -7,6 +7,7 @@ package oop1.workshop.controller;
 
 import javafx.scene.paint.Paint;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -25,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import oop1.workshop.Backend;
 import oop1.workshop.Building;
 import oop1.workshop.IFrontend;
+import oop1.workshop.Reading;
 import oop1.workshop.Sensor;
 
 /**
@@ -35,6 +38,7 @@ import oop1.workshop.Sensor;
 public class controller implements Initializable {
 
 	private IFrontend backend;
+	XYChart.Series<String, Double> series;
 	@FXML
 	private ListView<Building> lvDisplayBuildings;
 	@FXML
@@ -78,7 +82,7 @@ public class controller implements Initializable {
 	@FXML
 	private Button butRemoveSensor;
 	@FXML
-	private LineChart<Date, Double> lcReadingChart;
+	private LineChart<String, Double> lcReadingChart;
 	@FXML
 	private ListView<Building> lvGraphChooseBuilding;
 	@FXML
@@ -90,7 +94,9 @@ public class controller implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-
+		xAxis.setLabel("Date");
+		yAxis.setLabel("Reading");
+		series = new XYChart.Series<>();
 		backend = new Backend();
 		lvDisplayBuildings.setItems(backend.getBuildingList());
 		backend.addBuilding("test", "12", "t2", "2", 12);
@@ -179,7 +185,16 @@ public class controller implements Initializable {
 
 	@FXML
 	private void onlvGraphChooseSensor(MouseEvent event) {
-        
+		Sensor s = lvGraphChooseSensor.getSelectionModel().getSelectedItem();
+		Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
+		if(s != null && b != null){
+		ArrayList<Reading> readings = backend.getReadings(b.getBuildingID(),s.getId());
+		for(Reading r : readings){
+		series.getData().add(new XYChart.Data(r.getTime().toString(), r.getValue() ));    
+		}
+		lcReadingChart.getData().add(series);
+		}
+
 	}
 
 }
