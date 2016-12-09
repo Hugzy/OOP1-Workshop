@@ -7,6 +7,7 @@ package oop1.workshop.controller;
 
 import javafx.scene.paint.Paint;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,11 +76,11 @@ public class controller implements Initializable {
 	@FXML
 	private Button butRemoveSensor;
 	@FXML
-	private LineChart<?, ?> lcReadingChart;
+	private LineChart<Date, Double> lcReadingChart;
 	@FXML
-	private ListView<?> lvGraphChooseBuilding;
+	private ListView<Building> lvGraphChooseBuilding;
 	@FXML
-	private ListView<?> lvGraphChooseSensor;
+	private ListView<Sensor> lvGraphChooseSensor;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -90,7 +91,7 @@ public class controller implements Initializable {
 		rbAirSensor.setUserData("air");
 		rbTempSensor.setUserData("temp");
         labelBuildingAdded.setVisible(false);
-        
+        lvGraphChooseBuilding.setItems(backend.getBuildingList());
 
 	}
 
@@ -146,6 +147,8 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleAddReading(ActionEvent event) {
+        
+        
 	}
 
 	@FXML
@@ -154,10 +157,16 @@ public class controller implements Initializable {
 
 	@FXML
 	private void onlvGraphChooseBuilding(MouseEvent event) {
+        
+        Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
+        if (b!=null) {
+            lvGraphChooseSensor.setItems(b.getSensors());
+        }
 	}
 
 	@FXML
 	private void onlvGraphChooseSensor(MouseEvent event) {
+        
 	}
 
 }
