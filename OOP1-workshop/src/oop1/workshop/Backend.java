@@ -5,6 +5,7 @@
  */
 package oop1.workshop;
 
+import java.util.HashMap;
 import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,21 +15,24 @@ import javafx.collections.ObservableList;
  * @author Danieln Johansen
  */
 public class Backend implements IFrontend {
-
+    private HashMap<UUID,Building> buildingList;
     private ObservableList<Building> buildingSet;
     public Backend(){
+        this.buildingList = new HashMap<>();
         this.buildingSet = FXCollections.observableArrayList();
     }
     @Override
     public ObservableList<Building> getBuildingList() {
-        return buildingSet;
+        this.buildingSet = FXCollections.observableArrayList(buildingList.values());
+        return this.buildingSet;
     }
 
     @Override
     public void addBuilding(String name, String zipCode, String country, String streetName, int buildingNumber) {
         Address address;
         address = new Address(zipCode, country, streetName, buildingNumber);
-        buildingSet.add(new Building(name, address));
+        Building b = new Building(name, address);
+        buildingList.put(b.getBuildingID(),b);
     }
 
     @Override
@@ -46,6 +50,12 @@ public class Backend implements IFrontend {
 
     @Override
     public Building getBuilding(UUID uuid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return buildingList.get(uuid);
+    }
+
+    @Override
+    public ObservableList<Sensor> getSensorList(UUID buildingID) {
+         
+        return FXCollections.observableArrayList(getBuilding(buildingID).getSensors().values());
     }
 }

@@ -1,20 +1,22 @@
 package oop1.workshop;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Building implements Comparable<Building> {
 
-	private final ObservableList<Sensor> sensorList;
+	private ObservableList<Sensor> obserSensorList;
+        private final HashMap<UUID,Sensor> sensorList;
 	private final DBReadings database;
 	private String name;
 	private Address address;
 	private final UUID buildingID;
 
 	public Building(String name, Address address) {
-		this.sensorList = FXCollections.observableArrayList();
+		this.sensorList = new HashMap<>();
 		this.database = new DBReadings();
 		this.name = name;
 		this.buildingID = UUID.randomUUID();
@@ -24,7 +26,7 @@ public class Building implements Comparable<Building> {
 	/**
 	 * @return the sensors
 	 */
-	public ObservableList<Sensor> getSensors() {
+	public HashMap<UUID,Sensor> getSensors() {
 		return sensorList;
 	}
 
@@ -87,26 +89,23 @@ public class Building implements Comparable<Building> {
 			}
 		}
 		if (sensor != null) {
-			sensorList.add(sensor);
+			getSensors().put(sensor.getId(),sensor);
 		}
 
 	}
 
 	public void removeSensor(UUID sensorID) {
 		Sensor toRemove = null;
-		for (Sensor sensor : sensorList) {
-			if (sensor.getId().equals(sensorID)) {
-				toRemove = sensor;
-			}
-		}
-		if (toRemove != null) {
-			sensorList.remove(toRemove);
-		}
+		getSensors().remove(sensorID);
 	}
+        
+        public Reading makeReading(UUID sensorID) {
+            return new Reading(getSensors().get(sensorID).getCurrentValue(), new Date(), sensorID);
+        }
 
 	@Override
 	public int compareTo(Building o) {
-		return this.buildingID.compareTo(o.getBuildingID());
+		return this.getName().compareTo(o.getName());
 	}
 
 	@Override
@@ -117,4 +116,8 @@ public class Building implements Comparable<Building> {
 		sb.append(this.address.getCountry());
 		return sb.toString();
 	}
+
+    public ObservableList<Sensor> getSensorList() {
+        return obserSensorList;
+    }
 }

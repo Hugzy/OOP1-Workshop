@@ -30,107 +30,114 @@ import oop1.workshop.Sensor;
  */
 public class controller implements Initializable {
 
-	private IFrontend backend;
-	@FXML
-	private ListView<Building> lvDisplayBuildings;
-	@FXML
-	private Button butRemoveBuilding;
-	@FXML
-	private TextField tfDisplayBuildingName;
-	@FXML
-	private TextField tfDisplayAddress;
-	@FXML
-	private TextField tfDisplayUUID;
-	@FXML
-	private ListView<Sensor> lvDisplaySensors;
-	@FXML
-	private RadioButton rbAirSensor;
-	@FXML
-	private ToggleGroup toggleSensors;
-	@FXML
-	private RadioButton rbTempSensor;
-	@FXML
-	private Button butAddSensor;
-	@FXML
-	private TextField tfAddSensorName;
-	@FXML
-	private TextField tfAddBuildingName;
-	@FXML
-	private TextField tfAddCountry;
-	@FXML
-	private TextField tfAddZipCode;
-	@FXML
-	private TextField tfAddStreet;
-	@FXML
-	private TextField tfAddNumber;
-	@FXML
-	private Button butAddBuilding;
+    private IFrontend backend;
+    @FXML
+    private ListView<Building> lvDisplayBuildings;
+    @FXML
+    private Button butRemoveBuilding;
+    @FXML
+    private TextField tfDisplayBuildingName;
+    @FXML
+    private TextField tfDisplayAddress;
+    @FXML
+    private TextField tfDisplayUUID;
+    @FXML
+    private ListView<Sensor> lvDisplaySensors;
+    @FXML
+    private RadioButton rbAirSensor;
+    @FXML
+    private ToggleGroup toggleSensors;
+    @FXML
+    private RadioButton rbTempSensor;
+    @FXML
+    private Button butAddSensor;
+    @FXML
+    private TextField tfAddSensorName;
+    @FXML
+    private TextField tfAddBuildingName;
+    @FXML
+    private TextField tfAddCountry;
+    @FXML
+    private TextField tfAddZipCode;
+    @FXML
+    private TextField tfAddStreet;
+    @FXML
+    private TextField tfAddNumber;
+    @FXML
+    private Button butAddBuilding;
     @FXML
     private Label labelBuildingNumber;
     @FXML
     private Label labelBuildingAdded;
 
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
-		backend = new Backend();
-		lvDisplayBuildings.setItems(backend.getBuildingList());
-		backend.addBuilding("test","12","t2","2",12);
-		rbAirSensor.setUserData("air");
-		rbTempSensor.setUserData("temp");
+        backend = new Backend();
+
+        backend.addBuilding("test", "12", "t2", "2", 12);
+        rbAirSensor.setUserData("air");
+        rbTempSensor.setUserData("temp");
         labelBuildingAdded.setVisible(false);
-        
+        refresh();
+    }
 
-	}
+    @FXML
+    private void handleRemoveBuilding(ActionEvent event) {
+        Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+        if (b != null) {
+            backend.removeBuilding(b.getBuildingID());
+        }
+    }
 
-	@FXML
-	private void handleRemoveBuilding(ActionEvent event) {
-		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
-		if(b!=null){
-			backend.removeBuilding(b.getBuildingID());
-		}
-	}
+    @FXML
+    private void onlvDisplayBuildingsClick(MouseEvent event) {
+        Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+        if (b != null) {
+            tfDisplayBuildingName.setText(b.getName());
+            tfDisplayAddress.setText(b.getAddress().toString());
+            tfDisplayUUID.setText(b.getBuildingID().toString());
+            lvDisplaySensors.setItems(backend.getSensorList(b.getBuildingID()));
+        }
+    }
 
-	@FXML
-	private void onlvDisplayBuildingsClick(MouseEvent event) {
-		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
-		if (b != null) {
-			tfDisplayBuildingName.setText(b.getName());
-			tfDisplayAddress.setText(b.getAddress().toString());
-			tfDisplayUUID.setText(b.getBuildingID().toString());
-			lvDisplaySensors.setItems(b.getSensors());
-		}
-	}
+    @FXML
+    private void handleAddSensor(ActionEvent event) {
+        Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
+        if (b != null) {
+            b.addSensor(tfAddSensorName.getText(), (String) toggleSensors.selectedToggleProperty().getValue().getUserData());
+            lvDisplaySensors.setItems(backend.getSensorList(b.getBuildingID()));
+        }
+    }
 
-	@FXML
-	private void handleAddSensor(ActionEvent event) {
-		Building b = lvDisplayBuildings.getSelectionModel().getSelectedItem();
-		if(b != null){
-			b.addSensor(tfAddSensorName.getText(),(String)toggleSensors.selectedToggleProperty().getValue().getUserData());
-		}
-	}
+    @FXML
+    private void handleAddBuilding(ActionEvent event) {
+        try {
+            backend.addBuilding(tfAddBuildingName.getText(),
+                    tfAddZipCode.getText(),
+                    tfAddCountry.getText(),
+                    tfAddStreet.getText(),
+                    Integer.parseInt(tfAddNumber.getText()));
+            labelBuildingAdded.setVisible(true);
+            labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added");
+            tfAddBuildingName.clear();
+            tfAddZipCode.clear();
+            tfAddCountry.clear();
+            tfAddStreet.clear();
+            tfAddNumber.clear();
+            refresh();
 
-	@FXML
-	private void handleAddBuilding(ActionEvent event) {
-        try{
-		backend.addBuilding(tfAddBuildingName.getText(),
-				tfAddZipCode.getText(),
-				tfAddCountry.getText(),
-				tfAddStreet.getText(),
-				Integer.parseInt(tfAddNumber.getText()));
-        labelBuildingAdded.setVisible(true);
-        labelBuildingAdded.setText("Building " + tfAddBuildingName.getText() + " was succesfully added" );
-        tfAddBuildingName.clear();
-        tfAddZipCode.clear();
-        tfAddCountry.clear();
-        tfAddStreet.clear();
-        tfAddNumber.clear();
-        }catch(NumberFormatException ex) {
-            
+        } catch (NumberFormatException ex) {
+
             labelBuildingNumber.setText("Building Number - Please enter a valid building number");
             labelBuildingNumber.setTextFill(Paint.valueOf("ff0000"));
             tfAddNumber.clear();
         }
-	}
+    }
+
+    public void refresh() {
+        lvDisplayBuildings.setItems(backend.getBuildingList());
+
+    }
 
 }
