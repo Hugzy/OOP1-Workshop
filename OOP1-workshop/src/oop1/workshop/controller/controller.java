@@ -11,7 +11,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -80,6 +82,10 @@ public class controller implements Initializable {
 	private ListView<Building> lvGraphChooseBuilding;
 	@FXML
 	private ListView<Sensor> lvGraphChooseSensor;
+	@FXML
+	private NumberAxis yAxis;
+	@FXML
+	private CategoryAxis xAxis;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
