@@ -5,6 +5,7 @@
  */
 package oop1.workshop;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,4 +49,20 @@ public class Backend implements IFrontend {
     public Building getBuilding(UUID uuid) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+	@Override
+	public ArrayList<Reading> getReadings(UUID buildingId, UUID sensorId) {
+		ArrayList<Reading> returnList = new ArrayList<>();
+		for(Building b : buildingSet){
+			if(b.getBuildingID().compareTo(buildingId) == 0){
+				for(Reading r : b.getDatabase().getAllReadings()){
+					if(r.getOriginSensor().getId().compareTo(sensorId) == 0){
+						returnList.add(r);
+					}
+				}
+			}
+		}
+		return returnList;
+		
+	}
 }

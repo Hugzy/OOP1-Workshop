@@ -5,6 +5,7 @@
  */
 package oop1.workshop;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import javafx.collections.ObservableList;
 
@@ -18,5 +19,6 @@ public interface IFrontend {
     public void addBuilding(String name, String zipCode, String country, String streetName, int buildingNumber);
     public void removeBuilding(UUID uuid);
     public Building getBuilding(UUID uuid);
+	public ArrayList<Reading> getReadings(UUID buildingId, UUID sensorId);
   
 }

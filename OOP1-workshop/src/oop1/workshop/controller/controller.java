@@ -102,10 +102,9 @@ public class controller implements Initializable {
 		backend.addBuilding("test", "12", "t2", "2", 12);
 		rbAirSensor.setUserData("air");
 		rbTempSensor.setUserData("temp");
-        labelBuildingAdded.setVisible(false);
-        lvGraphChooseBuilding.setItems(backend.getBuildingList());
 		labelBuildingAdded.setVisible(false);
-
+		lvGraphChooseBuilding.setItems(backend.getBuildingList());
+		labelBuildingAdded.setVisible(false);
 
 	}
 
@@ -161,8 +160,7 @@ public class controller implements Initializable {
 
 	@FXML
 	private void handleAddReading(ActionEvent event) {
-        
-        
+
 	}
 
 	@FXML
@@ -176,23 +174,25 @@ public class controller implements Initializable {
 
 	@FXML
 	private void onlvGraphChooseBuilding(MouseEvent event) {
-        
-        Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
-        if (b!=null) {
-            lvGraphChooseSensor.setItems(b.getSensors());
-        }
+
+		Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
+		if (b != null) {
+			lvGraphChooseSensor.setItems(b.getSensors());
+		}
 	}
 
 	@FXML
 	private void onlvGraphChooseSensor(MouseEvent event) {
 		Sensor s = lvGraphChooseSensor.getSelectionModel().getSelectedItem();
 		Building b = lvGraphChooseBuilding.getSelectionModel().getSelectedItem();
-		if(s != null && b != null){
-		ArrayList<Reading> readings = backend.getReadings(b.getBuildingID(),s.getId());
-		for(Reading r : readings){
-		series.getData().add(new XYChart.Data(r.getTime().toString(), r.getValue() ));    
-		}
-		lcReadingChart.getData().add(series);
+		if (s != null && b != null) {
+			ArrayList<Reading> readings = backend.getReadings(b.getBuildingID(), s.getId());
+			if (!readings.isEmpty()) {
+				for (Reading r : readings) {
+					series.getData().add(new XYChart.Data(r.getTime().toString(), r.getValue()));
+				}
+			}
+			lcReadingChart.getData().add(series);
 		}
 
 	}
